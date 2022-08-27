@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 export default function TextForm(props) {
 
+  //document.title = 'Some Title';
+
   const [text, setText]  = useState('Enter Text Here');  
 
   const handleOnChange = (event) => {
@@ -41,5 +43,6 @@ export default function TextForm(props) {
       </div>
     </div>
   );
+
 }
 
