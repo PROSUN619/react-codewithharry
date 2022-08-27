@@ -13,10 +13,15 @@ export default function TextForm(props) {
     setText(newText);
   }
 
+  const handleOnClickLower = () => {
+    const newText = text.toLowerCase();
+    setText(newText);
+  }
+
   return (
     <div className="container">
       <div className="mb-3">
-        <label Htmlfor="exampleFormControlTextarea1" className="form-label">
+        <label htmlFor="exampleFormControlTextarea1" className="form-label">
           <b>{props.label}</b>
         </label>
         <textarea
@@ -26,8 +31,14 @@ export default function TextForm(props) {
           value={text}
           onChange={handleOnChange}
         ></textarea>
-        <button type="button" class="btn btn-primary" onClick={handleOnClick}>Click to Uppercase</button>
+        <button type="button" className="btn btn-primary mx-2" onClick={handleOnClick}>Click to Uppercase</button>
+        <button type="button" className="btn btn-primary mx-2" onClick={handleOnClickLower}>Click to Lowercase</button>
+        <h1>Your Text Summary</h1>
+        <h3>Words - {text.length === 0 ? 0 : text.split(" ").length} Characters {text.length}</h3>
+        <br/>
+        <h3>Reading Time {((text.length*0.2)/60).toFixed(2)} min</h3>
       </div>
     </div>
   );
 }
+
