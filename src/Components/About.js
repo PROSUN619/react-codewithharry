@@ -1,38 +1,19 @@
-import React, {useState} from "react";
+import React from "react";
 
-export default function About() {
+export default function About(props) {
 
-    const [theme, setTheme] = useState({
-        backgroundColor: 'white',
-        color: 'black'    
-    });
+   // console.log('mode is ' + props.mode);  
 
-    const [text, setText] = useState('Dark Mode');
-
-    const handleOnClick = () => {
-        
-        if (text === "Dark Mode"){
-            setTheme({
-                backgroundColor: 'black',
-                color: 'white'
-            });
-            setText("White Mode");
-        }
-        else{
-            setTheme({
-                backgroundColor: 'white',
-                color: 'black'    
-            });
-            setText("Dark Mode");
-        }
-        
+    let myStyle = {
+      color: props.mode === 'dark' ? 'white' : 'black',
+      backgroundColor: props.mode === 'dark' ? 'black' : 'white'
     }
 
   return (
 
-    <div className="container my-3" style={theme}>
+    <div className="container my-3" style={myStyle}>
       <div className="accordion accordion-flush" id="accordionFlushExample">
-        <div className="accordion-item">
+        <div className="accordion-item" style={myStyle}>
           <h2 className="accordion-header" id="flush-headingOne">
             <button
               className="accordion-button collapsed"
@@ -41,6 +22,7 @@ export default function About() {
               data-bs-target="#flush-collapseOne"
               aria-expanded="false"
               aria-controls="flush-collapseOne"
+              style={myStyle}
             >
               Accordion Item #1
             </button>
@@ -115,7 +97,6 @@ export default function About() {
           </div>
         </div>
       </div>
-      <button type="button" className="btn btn-primary mx-2" onClick={handleOnClick}>{text}</button>
     </div>
   );
 }

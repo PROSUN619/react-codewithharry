@@ -4,7 +4,7 @@ export default function TextForm(props) {
 
   //document.title = 'Some Title';
 
-  const [text, setText]  = useState('Enter Text Here');  
+  const [text, setText]  = useState('');  
 
   const handleOnChange = (event) => {
     setText(event.target.value);
@@ -13,7 +13,7 @@ export default function TextForm(props) {
   const handleOnClick = () => {
     const newText = text.toUpperCase();
     setText(newText);
-    props.showalert('success','Successfully updated to uppercase');    
+    props.showAlert('success','Successfully updated to uppercase');    
   }
 
   const handleOnClickLower = () => {
@@ -23,6 +23,7 @@ export default function TextForm(props) {
 
   return (
     <div className="container">
+
       <div className="mb-3">
         <label htmlFor="exampleFormControlTextarea1" className="form-label">
           <b>{props.label}</b>
@@ -34,10 +35,11 @@ export default function TextForm(props) {
           value={text}
           onChange={handleOnChange}
         ></textarea>
-        <button type="button" className="btn btn-primary mx-2" onClick={handleOnClick}>Click to Uppercase</button>
+        <button type="button" className="btn btn-primary mx-2" disabled={!text.split(" ").filter(x => x.length!==0).length > 0}
+         onClick={handleOnClick}>Click to Uppercase</button>
         <button type="button" className="btn btn-primary mx-2" onClick={handleOnClickLower}>Click to Lowercase</button>
         <h1>Your Text Summary</h1>
-        <h3>Words - {text.length === 0 ? 0 : text.split(" ").length} Characters {text.length}</h3>
+        <h3>Words - {text.split(" ").filter((element) => {return element.length !==0}).length} Characters {text.length}</h3>
         <br/>
         <h3>Reading Time {((text.length*0.2)/60).toFixed(2)} min</h3>
       </div>

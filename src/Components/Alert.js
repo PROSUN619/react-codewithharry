@@ -1,10 +1,13 @@
 import React from "react";
 
 export default function Alert(props) {
-    debugger;
+ //   debugger;
   return (    
-    props.alert && <div class={`alert alert-${props.alert.type}`} role="alert">
-      {props.alert.message}
+    <div style={{height: '50px'}}>
+        {props.alert && <div className={`alert alert-${props.alert.type}`} role="alert">
+        {props.alert.message}
+        </div>}
     </div>
+    
   );
 }
